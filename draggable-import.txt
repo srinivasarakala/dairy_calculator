@@ -1,0 +1,2 @@
+// Add this import to App.js for drag-and-drop support
+import DraggableFlatList from 'react-native-draggable-flatlist';
