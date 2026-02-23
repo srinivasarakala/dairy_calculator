@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SafeAreaView, StyleSheet, Text, TextInput, View, FlatList, Pressable } from 'react-native';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import {  StyleSheet, Text, TextInput, View, FlatList, Pressable } from 'react-native';
+import { SafeAreaProvider , SafeAreaView} from 'react-native-safe-area-context';
 import { Share } from 'react-native';
 import { Alert } from 'react-native';
 
@@ -164,8 +164,6 @@ function MainApp() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [history, setHistory] = useState([]);
   const [archive, setArchive] = useState([]);
-
-  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     const loadData = async () => {
@@ -353,7 +351,7 @@ function MainApp() {
         )}
 
         {/* Bottom Section */}
-        <View style={{ paddingVertical: 10, paddingBottom: insets.bottom  }}>
+        <View style={{ paddingVertical: 10  }}>
           <View style={[styles.summaryBox, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <Text style={styles.totalLabel}>Total Price</Text>
             <Text style={styles.totalValue}>₹{totalPrice.toFixed(2)}</Text>
@@ -632,7 +630,7 @@ function MainApp() {
   return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <StatusBar style="auto" />
-        <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#d1d5db', marginTop: 32, paddingTop: insets.top,paddingHorizontal: 16 }}>
+        <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#d1d5db', marginTop: 32, paddingHorizontal: 16 }}>
           <Pressable
             style={[{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 14, borderRadius: 10, marginRight: 8 }, { backgroundColor: activeTab === 'home' ? '#2563eb' : '#e5e7eb' }]} 
             onPress={() => setActiveTab('home')}
@@ -669,7 +667,9 @@ function MainApp() {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <MainApp />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <MainApp />
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
