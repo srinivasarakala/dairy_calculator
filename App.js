@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {  StyleSheet, Text, TextInput, View, FlatList, Pressable } from 'react-native';
 import { SafeAreaProvider , SafeAreaView} from 'react-native-safe-area-context';
-import { Share } from 'react-native';
+import { Share, KeyboardAvoidingView, Platform } from 'react-native';
 import { Alert } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -330,6 +330,10 @@ function MainApp() {
   // Home Screen
   const renderHome = () => {
     return (
+      <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <View style={{ flex: 1 }}>
         <Text style={styles.sectionTitle}>Calculator</Text>
         {products.length === 0 ? (
@@ -339,7 +343,7 @@ function MainApp() {
             data={products}
             keyExtractor={(item) => item.id}
             keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ paddingBottom: 20 }}
+            contentContainerStyle={{ paddingBottom: 0 }}
             renderItem={({ item }) => (
               <ProductRow
                 item={item}
@@ -391,7 +395,9 @@ function MainApp() {
           </View>
         </View>
       </View>
+      </KeyboardAvoidingView>
     );
+    
   };
 
   const today = new Date().toLocaleDateString();

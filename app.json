@@ -17,14 +17,14 @@
     },
     "android": {
       "package": "com.srinivas.dairycalculator",
+      "softwareKeyboardLayoutMode": "resize",
       "permissions": [
         "READ_MEDIA_IMAGES"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/dairy_calculator.png",
         "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
